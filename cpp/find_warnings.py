@@ -563,7 +563,7 @@ class WarningHunter(object):
         basename = os.path.basename(os.path.splitext(self.filename)[0])
         include_paths = [os.path.dirname(self.filename)] + self.include_paths
         source, filename = headers.read_source(basename + '.h', include_paths)
-        primary_header = included_files.get(filename)
+        primary_header = headers.find_include(filename, included_files)
         if primary_header:
             return primary_header[1]
         if source is not None:

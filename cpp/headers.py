@@ -34,3 +34,12 @@ def read_source(filename, include_paths):
         if source is not None:
             return source, actual_filename
     return None, filename
+
+def find_include(filename, included_files):
+    norm_filename = os.path.normpath(filename)
+    for incl_name, include in included_files.items():
+        norm_incl_name = os.path.normpath(incl_name)
+        if norm_incl_name.endswith(norm_filename):
+            return include
+    return None
+
